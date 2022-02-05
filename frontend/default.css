@@ -4,7 +4,6 @@
 
 body {
     padding: 0;
-    margin: 10%;
     background-color: white;
     color: black;
     display: flex;
@@ -24,12 +23,15 @@ p {
     display: inline-block;
 }
 
+
+
 .map-flex {
     display: flex;
     width: 500px;
 }
 
 .map {
+    background: #ffad4f;
     display: flex;
     margin: 0;
     width: 500px;
@@ -37,10 +39,6 @@ p {
 }
 
 .pad {
-}
-
-.sliders {
-    width: 250px;
 }
 
 .structure {
@@ -52,6 +50,12 @@ p {
 .structure-container {
     display: inline-block;
     width: 550px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .text {
+      background: #bada55;
+    }
 }
 
 .text {

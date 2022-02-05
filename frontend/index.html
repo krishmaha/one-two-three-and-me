@@ -3,6 +3,7 @@
 <head>
     <title>Neural Network Height Map</title>
     <script src = "main.js" type="module"></script>
+    <script src = "touch.js" type="module"></script>
     <link rel="stylesheet" href="default.css">
 </head>
 
@@ -11,16 +12,21 @@
         <section class="map-container">
             <div class="map-flex">
                 <div id="map" class = "map">
-                    <canvas id="canvas" width="800" height="500"></canvas>
-                        <div id="output"></div>
-                <!-- </div>
-                <div class="color-picker">
-                    <input type="color">
-                </div> -->
+                    <canvas id="canvas"></canvas>
+                    <div id="go" class="go">
+                    </div>
             </div>
         </section>
 
         <section class="structure-container">
+            <div>
+                <button>Submit</button>
+            </div>
+            <div class="clear">
+                <button>Clear</button>
+            </div>
+            <p>Colour Picker</p>
+            <input type="color" id="colour">
             <div class="text">
                 <p>
                     <strong>Learning Numbers</strong>

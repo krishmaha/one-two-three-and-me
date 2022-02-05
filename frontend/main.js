@@ -1,45 +1,68 @@
-(function() {
-    var canvas = document.querySelector('#canvas');
-    var ctx = canvas.getContext('2d');
-
-    var sketch = document.querySelector('#map');
-    var sketch_style = getComputedStyle(sketch);
-    canvas.width = parseInt(sketch_style.getPropertyValue('width'));
-    canvas.height = parseInt(sketch_style.getPropertyValue('height'));
-
-    var mouse = {x: 0, y: 0};
-    var last_mouse = {x: 0, y: 0};
-
-    /* Mouse Capturing Work */
-    canvas.addEventListener('mousemove', function(e) {
-        last_mouse.x = mouse.x;
-        last_mouse.y = mouse.y;
-
-        mouse.x = e.pageX - this.offsetLeft;
-        mouse.y = e.pageY - this.offsetTop;
-    }, false);
-
-
-    /* Drawing on Paint App */
-    ctx.lineWidth = 5;
-    ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = 'blue';
-
-    canvas.addEventListener('mousedown', function(e) {
-        canvas.addEventListener('mousemove', onPaint, false);
-    }, false);
-
-    canvas.addEventListener('mouseup', function() {
-        canvas.removeEventListener('mousemove', onPaint, false);
-    }, false);
-
-    var onPaint = function() {
-        ctx.beginPath();
-        ctx.moveTo(last_mouse.x, last_mouse.y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.closePath();
-        ctx.stroke();
+function $(el) {
+    return document.getElementById(el.replace(/#/, ''));
+}
+;
+var canvas = $('#canvas');
+canvas.width = document.body.clientWidth;
+canvas.height = document.body.clientHeight;
+var context = canvas.getContext('2d');
+var start = function(coors) {
+    context.beginPath();
+    context.moveTo(coors.x, coors.y);
+    this.isDrawing = true;
+};
+var move = function(coors) {
+    if (this.isDrawing) {
+        context.strokeStyle = "#fff";
+        context.lineJoin = "round";
+        context.lineWidth = 3;
+        context.lineTo(coors.x, coors.y);
+        context.stroke();
+    }
+};
+var stop = function(coors) {
+    if (this.isDrawing) {
+        this.touchmove(coors);
+        this.isDrawing = false;
+    }
+};
+var drawer = {
+    isDrawing: false,
+    mousedown: start,
+    mousemove: move,
+    mouseup: stop,
+    touchstart: start,
+    touchmove: move,
+    touchend: stop
+};
+var draw = function(e) {
+    var coors = {
+        x: e.clientX || e.targetTouches[0].pageX,
+        y: e.clientY || e.targetTouches[0].pageY
     };
+    drawer[e.type](coors);
+}
+canvas.addEventListener('mousedown', draw, false);
+canvas.addEventListener('mousemove', draw, false);
+canvas.addEventListener('mouseup', draw, false);
+canvas.addEventListener('touchstart', draw, false);
+canvas.addEventListener('touchmove', draw, false);
+canvas.addEventListener('touchend', draw, false);
 
-}());
+var go = function(e) {
+    this.parentNode.removeChild(this);
+    draw(e);
+};
+
+$('#go').addEventListener('mousedown', go, false);
+$('#go').addEventListener('touchstart', go, false);
+
+// prevent elastic scrolling
+document.body.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+}, false);
+// end body:touchmove
+window.onresize = function(e) {
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.body.clientHeight;
+};
