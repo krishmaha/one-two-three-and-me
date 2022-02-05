@@ -1,0 +1,59 @@
+:root {
+    --c1: #ffad4f;
+}
+
+body {
+    padding: 0;
+    margin: 10%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: flex-start;
+}
+
+a,
+p {
+    padding: 5%;
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+    font-family: Helvetica, sans-serif;
+}
+
+.map-container {
+    display: inline-block;
+}
+
+.map-flex {
+    display: flex;
+    width: 500px;
+}
+
+.map {
+    display: flex;
+    margin: 0;
+    width: 500px;
+    border: solid;
+}
+
+.pad {
+}
+
+.sliders {
+    width: 250px;
+}
+
+.structure {
+    display: inline-block;
+    padding: 10px 0;
+    width: 400px;
+}
+
+.structure-container {
+    display: inline-block;
+    width: 550px;
+}
+
+.text {
+    width: 550px;
+}
