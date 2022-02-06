@@ -1,7 +1,16 @@
 const el = (id) => document.getElementById(id);
 let canvas = el("canvas");
 let context = canvas.getContext("2d");
-let checkAnswer = 0;
+
+const newNumber = function (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+let checkAnswer = newNumber(0,10);
+console.log(checkAnswer);
+el("number").textContent = checkAnswer;
+
+
 
 el("check").onclick = async function () {
   const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -19,8 +28,6 @@ el("check").onclick = async function () {
     }
   }
 
-  //console.log(grayScaleImage);
-
   const response = await fetch("http://127.0.0.1:8000/model/predict/", {
     method: "POST",
     headers: {
@@ -31,22 +38,20 @@ el("check").onclick = async function () {
 
   const data = await response.json();
   let predicted = data.predicted;
+  console.log(checkAnswer)
 
   if (predicted === checkAnswer) {
-    el("popup").textContent = "Your answer is correct!";
+    el("popup").textContent = "Your answer is correct! ✅🎉";
   } else {
-    el("popup").textContent = "Your answer is incorrect :( Please try again";
+    el("popup").textContent = "Your answer is incorrect ❌😞 :( Please try again";
   }
 
   console.log(data.predicted);
   //console.log(data.score);
 };
 
-const newNumber = function (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-};
-
 el("plus").onclick = function () {
+  context.clearRect(0, 0, canvas.width, canvas.height);
   let num1 = newNumber(0, 9);
   let num2 = newNumber(0, 10 - num1);
   el("number").textContent = num1 + " + " + num2;
@@ -54,6 +59,7 @@ el("plus").onclick = function () {
 };
 
 el("minus").onclick = function () {
+  context.clearRect(0, 0, canvas.width, canvas.height);
   let num1 = newNumber(2, 10);
   let num2 = newNumber(1, num1);
   el("number").textContent = num1 + " - " + num2;
@@ -61,6 +67,7 @@ el("minus").onclick = function () {
 };
 
 el("newnum").onclick = function () {
+  context.clearRect(0, 0, canvas.width, canvas.height);
   let num = newNumber(0, 10);
   el("number").textContent = num;
   checkAnswer = num;
@@ -76,6 +83,7 @@ const closeButton = document.querySelector(".close-button");
 
 function toggleModal() {
   modal.classList.toggle("show-modal");
+  //context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function windowOnClick(event) {

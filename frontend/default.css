@@ -1,10 +1,16 @@
+.all {
+  background: rgba(211, 206, 206, 0.74);
+}
+
 #canvas {
   border: solid;
   border-color: rgba(211, 206, 206, 0.74);
+  background: white;
   border-width: 3px;
   margin-top: 10%;
   margin-bottom: 10%;
   margin-left: 5%;
+  border-radius: 15px;
 }
 
 .canvasBox {
@@ -13,6 +19,7 @@
 }
 
 .user {
+  border-radius: 15px;
   background-color: darkorange;
   margin-left: 4%;
   vertical-align: middle;
@@ -91,7 +98,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 1rem 1.5rem;
+  font-size: 22px;
+  padding: 2rem 2rem;
   width: 24rem;
   border-radius: 0.5rem;
 }
