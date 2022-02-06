@@ -44,6 +44,9 @@ After starting the backend server, start the server hosting the frontend. Then v
 
 ## Screenshots
 
+![](https://drive.google.com/file/d/18R2FJCSPJNwdPn3869mKXDARQHkTWsUn/view?usp=sharing)
+![](https://drive.google.com/file/d/1XM5fPiFBR0FNSuGICDSBRcl2Rk5XgTsy/view?usp=sharing)
+![](https://drive.google.com/file/d/1ns1ZQZJ0bRqmd9y-9W5UqVypc3WDJpmN/view?usp=sharing)
 
 ## Creators
 This project was made by Rishav Chatterjee, Krish Maha, Dhruv Jimulia, Aaryan Dharmadhikari and Ankit Sh
