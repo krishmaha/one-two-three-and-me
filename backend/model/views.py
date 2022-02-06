@@ -38,7 +38,7 @@ def compress(image):
       for r in range(0, 19):
         for k in range(0, 19):
           sumvalue += image[i + r][j + k]
-      avgvalue = sumvalue / 400.
+      avgvalue = (sumvalue / 400.) ** 2
       new_image[(i + 1) // 20][(j + 1) // 20] = avgvalue 
   return new_image
 

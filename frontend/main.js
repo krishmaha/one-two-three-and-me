@@ -11,8 +11,6 @@ el("check").onclick = async function () {
     return imageData.data[red + 3]
   }
   
-  let grayScaleImage = []
-
   let grayScaleImage = [];
   for (let i = 0; i < canvas.height; i++) {
     grayScaleImage.push([])
