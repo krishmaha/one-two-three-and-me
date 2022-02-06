@@ -1,6 +1,7 @@
 const el = (id) => document.getElementById(id);
 let canvas = el("canvas");
 let context = canvas.getContext("2d");
+let checkAnswer = 0;
 
 el("check").onclick = async function () {
   const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -11,6 +12,8 @@ el("check").onclick = async function () {
   }
   
   let grayScaleImage = []
+
+  let grayScaleImage = [];
   for (let i = 0; i < canvas.height; i++) {
     grayScaleImage.push([])
     for (let j = 0; j < canvas.width; j++) {
@@ -21,30 +24,46 @@ el("check").onclick = async function () {
   console.log(grayScaleImage)
 
   const response = await fetch("http://127.0.0.1:8000/model/predict/", {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Origin': 'http://127.0.0.1:8887/'
+      Origin: "http://127.0.0.1:8887/",
     },
-    body: JSON.stringify({'image' : grayScaleImage})
-  })
+    body: JSON.stringify({ image: grayScaleImage }),
+  });
 
   const data = await response.json();
-  
+
   console.log(data.predicted);
   console.log(data.score);
-
 };
 
-el("shuffle").onclick = function () {
-  let newNumber = Math.floor(Math.random() * 10);
-  el("number").textContent = newNumber;
+const newNumber = function (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+el("plus").onclick = function () {
+  let num1 = newNumber(0, 9);
+  let num2 = newNumber(0, 10 - num1);
+  el("number").textContent = num1 + " + " + num2;
+  checkAnswer = num1 + num2;
+};
+
+el("minus").onclick = function () {
+  let num1 = newNumber(2, 10);
+  let num2 = newNumber(1, num1);
+  el("number").textContent = num1 + " - " + num2;
+  checkAnswer = num1 - num2;
+};
+
+el("newnum").onclick = function () {
+  let num = newNumber(0, 10);
+  el("number").textContent = num;
+  checkAnswer = num;
 };
 
 el("clear").onclick = function () {
   context.clearRect(0, 0, canvas.width, canvas.height);
 };
-
-el("settings").onclick = function () {};
 
 const modal = document.querySelector(".modal");
 const trigger = document.querySelector(".trigger");
