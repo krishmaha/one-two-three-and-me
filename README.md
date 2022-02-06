@@ -1,5 +1,4 @@
-
-123&Me is a platform designed to help younger children learn to read and write numbers, as well as basic numeracy to test understanding. As such, it's benefits are fourfold:
+123&Me is a platform designed to help younger children learn to read and write numbers, as well as basic numeracy to test understanding. As such, it's benefits are threefold:
 - Allows teaching for younger children to be fully autonomous, allowing for easy and accessible teaching, especially given high childcare costs
 - Aids in the increasingly important need to move towards a paperless world
 - Capitalises on the widespread access to touchscreen devices
@@ -15,10 +14,7 @@ There are five buttons:
 
 The frontend is written in JavaScript, HTML and CSS.
 
-The backend is written in Python-Django, with numerical analysis being computed by a CNN machine learning model we trained using the MNIST dataset.
+The backend is written in Django, with numerical analysis being computed by a CNN machine learning model we trained using the MNIST dataset.
 
-Prerequisites
+HOW TO RUN:
 required
-
-
-Getting Started
