@@ -10,7 +10,6 @@ from matplotlib import pyplot as plt
 @csrf_exempt
 def predict(request):
   json_body = json.loads(request.body.decode('utf-8'))
-  print(json_body['image'])
   new_image = compress(json_body['image'])
 
   resizedImage = np.reshape(new_image, (1, 28, 28))
