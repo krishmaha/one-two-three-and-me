@@ -6,21 +6,19 @@ el("check").onclick = async function () {
   const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
   const getGrayScaleValue = (x, y) => {
-    const red = y * (canvas.width * 4) + x * 4;
-    const redCoord = imageData.data[red]
-    const blueCoord = imageData.data[red + 1]
-    const greenCoord = imageData.data[red + 2]
-    return (redCoord + blueCoord + greenCoord) / 3;
+    const red = (y * canvas.width + x) * 4;
+    return imageData.data[red + 3]
   }
   
   let grayScaleImage = []
   for (let i = 0; i < canvas.height; i++) {
+    grayScaleImage.push([])
     for (let j = 0; j < canvas.width; j++) {
-      grayScaleImage.push(getGrayScaleValue(j, i))
+      grayScaleImage[i].push(getGrayScaleValue(j, i))
     }
   }
 
-  console.log(JSON.stringify(grayScaleImage))
+  console.log(grayScaleImage)
 
   const response = await fetch("http://127.0.0.1:8000/model/predict/", {
     method: 'POST',
