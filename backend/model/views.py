@@ -12,7 +12,6 @@ def predict(request):
   new_image = compress(json_body['image'])
 
   resizedImage = np.reshape(new_image, (1, 28, 28))
-  # print(np.reshape(resizedImage, (28, 28)).tolist())
 
   model = tf.keras.models.load_model("model/MNIST_model_trained/")
   prediction = model.predict(resizedImage)
@@ -28,28 +27,6 @@ def predict(request):
 
   return response;
 
-# def compress(image):
-#   new_image = np.empty([28, 28])
-#   for i in range(0, len(image) - 1, 20):
-#     for j in range(0, len(image) - 1, 20):
-#       sumvalue = 0
-#       for r in range(0, 19):
-#         for k in range(0, 19):
-#           sumvalue += image[i + r][j + k]
-#       avgvalue = (sumvalue / 400.) ** 2
-#       new_image[(i + 1) // 20][(j + 1) // 20] = avgvalue 
-#   return new_image
-
-# def compress(image):
-#   new_image = np.empty([28, 28])
-#   for i in range(0, len(image) - 1, 20):
-#     for j in range(0, len(image) - 1, 20):
-#       newvalue = 0
-#       for r in range(0, 19):
-#         for k in range(0, 19):
-#           if (image[i + r][j + k] > 0): newvalue = 255
-#       new_image[(i + 1) // 20][(j + 1) // 20] = newvalue
-#   return new_image
 
 def compress(image):
   new_image = np.empty([28, 28])

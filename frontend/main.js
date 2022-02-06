@@ -47,7 +47,6 @@ el("check").onclick = async function () {
   }
 
   console.log(data.predicted);
-  //console.log(data.score);
 };
 
 el("plus").onclick = function () {
