@@ -42,8 +42,5 @@ $ python3 manage.py runserver 8000
 This will start a backend server at URL `http://127.0.0.1:8000`.
 After starting the backend server, start the server hosting the frontend. Then visit the URL `http://127.0.0.1:8887` to start the application.
 
-## Screenshots
-
-
 ## Creators
-This project was made by Rishav Chatterjee, Krish Maha, Dhruv Jimulia, Aaryan Dharmadhikari and Ankit Sh
+This project was made by Rishav Chatterjee, Krish Maha, Dhruv Jimulia, Aaryan Dharmadhikari and Ankit Sreevatsa as a project for IC Hack 22.
