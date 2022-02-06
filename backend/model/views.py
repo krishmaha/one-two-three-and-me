@@ -5,7 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 import tensorflow as tf
 import numpy as np
 import json
-from matplotlib import pyplot as plt
 
 @csrf_exempt
 def predict(request):
