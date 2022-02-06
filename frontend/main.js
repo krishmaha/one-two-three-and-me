@@ -8,18 +8,18 @@ el("check").onclick = async function () {
 
   const getGrayScaleValue = (x, y) => {
     const red = (y * canvas.width + x) * 4;
-    return imageData.data[red + 3]
-  }
-  
+    return imageData.data[red + 3];
+  };
+
   let grayScaleImage = [];
   for (let i = 0; i < canvas.height; i++) {
-    grayScaleImage.push([])
+    grayScaleImage.push([]);
     for (let j = 0; j < canvas.width; j++) {
-      grayScaleImage[i].push(getGrayScaleValue(j, i))
+      grayScaleImage[i].push(getGrayScaleValue(j, i));
     }
   }
 
-  console.log(grayScaleImage)
+  //console.log(grayScaleImage);
 
   const response = await fetch("http://127.0.0.1:8000/model/predict/", {
     method: "POST",
@@ -30,9 +30,16 @@ el("check").onclick = async function () {
   });
 
   const data = await response.json();
+  let predicted = data.predicted;
+
+  if (predicted === checkAnswer) {
+    el("popup").textContent = "Your answer is correct!";
+  } else {
+    el("popup").textContent = "Your answer is incorrect :( Please try again";
+  }
 
   console.log(data.predicted);
-  console.log(data.score);
+  //console.log(data.score);
 };
 
 const newNumber = function (min, max) {
